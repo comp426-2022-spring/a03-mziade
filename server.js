@@ -1,6 +1,5 @@
 // Require Express.js
 const express = require('express')
-const { countFlips } = require('../a02-mziade/modules/coin.mjs')
 const app = express()
 const args = require('minimist')(process.argv.slice(2))
 args['port']
