@@ -55,8 +55,8 @@ function countFlips(array) {
 	return(Tab)
 }
 app.get('/app/flips/:number', (req, res) => {
-	const flips = manyflips(req.params.number)
-	res.status(200).json({ 'raw': countFlips(coinFlips(flips))})
+	const flips = coinFlips(req.params.number)
+	res.status(200).json({ 'raw': flips, "summary" : countFlips(flips)})
 });
 
 
