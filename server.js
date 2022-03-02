@@ -1,5 +1,6 @@
 // Require Express.js
 const express = require('express')
+const { countFlips } = require('../a02-mziade/modules/coin.mjs')
 const app = express()
 const args = require('minimist')(process.argv.slice(2))
 args['port']
@@ -30,13 +31,33 @@ app.get('/app/flip', (req, res) => {
 	res.status(200).json({ 'flip' : flip})
 }) 
 
-
+function coinFlips(flips) {
+	const arr = []
+	for(let i = 1; i <= flips; i++) {
+	  arr.push(Math.random() > 0.5 ? ("heads") : ("tails"))
+	}
+	return arr
+}
+function countFlips(array) {
+	const Tab = {tails: 0, heads: 0}
+	for(let i = 0; i < array.length; i++) {
+	  if(array[i] == "heads"){
+		Tab.heads = Tab.heads + 1
+	  } else {
+		Tab.tails = Tab.tails + 1
+	  }
+	}
+	if(Tab.heads == 0){
+	  delete Tab.heads
+	} if(Tab.tails ==0){
+	  delete Tab.tails
+	}
+	return(Tab)
+  }
 app.get('/app/flips/:number', (req, res) => {
 	const flips = manyflips(req.params.number)
-	//Other
-	//expressions
-	//go
-	//here
+	const arr = coinFlips(flips)
+	res.status(200).json({ 'raw': countFlips(arr)})
 });
 
 
