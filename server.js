@@ -20,10 +20,16 @@ app.get('/app/', (req, res) => {
 		res.end(res.statusCode+ ' ' +res.statusMessage)
 });
 
-// Default response for any other request
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-});
+
+function coinFlip() {
+	return Math.random() > 0.5 ? ("heads") : ("tails")
+}
+
+app.get('/app/flip', (req, res) => {
+	var flip = coinFlip()
+	res.status(200).json({ 'flip' : flip})
+}) 
+
 
 app.get('/app/flips/:number', (req, res) => {
 	const flips = manyflips(req.params.number)
@@ -32,3 +38,10 @@ app.get('/app/flips/:number', (req, res) => {
 	//go
 	//here
 });
+
+
+// Default response for any other request
+app.use(function(req, res){
+    res.status(404).send('404 NOT FOUND')
+});
+
