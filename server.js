@@ -71,11 +71,11 @@ function flipACoin(call) {
 	return Tab
 }
 
-app.get('/app/flips/call/heads', (req, res) => {
+app.get('/app/flip/call/heads', (req, res) => {
 	res.status(200).json(flipACoin("heads"))
 });
 
-app.get('/app/flips/call/tails', (req, res) => {
+app.get('/app/flip/call/tails', (req, res) => {
 	res.status(200).json(flipACoin("tails"))
 });
 
