@@ -30,13 +30,14 @@ app.get('/app/flip', (req, res) => {
 	res.status(200).json({ 'flip' : flip})
 })
 
-/* function coinFlips(flips) {
+function coinFlips(flips) {
 	const arr = []
 	for(let i = 1; i <= flips; i++) {
 	  arr.push(Math.random() > 0.5 ? ("heads") : ("tails"))
 	}
 	return arr
 }
+
 function countFlips(array) {
 	const Tab = {tails: 0, heads: 0}
 	for(let i = 0; i < array.length; i++) {
@@ -58,7 +59,7 @@ app.get('/app/flips/:number', (req, res) => {
 	const arr = coinFlips(flips)
 	res.status(200).json({ 'raw': countFlips(arr)})
 });
- */
+
 
 // Default response for any other request
 app.use(function(req, res){
