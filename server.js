@@ -59,6 +59,25 @@ app.get('/app/flips/:number', (req, res) => {
 	res.status(200).json({ 'raw': flips, "summary" : countFlips(flips)})
 });
 
+function flipACoin(call) {
+	const Tab = {call: "", flip: "", result: ""}
+	Tab.call = call
+	Tab.flip = Math.random() > 0.5 ? ("heads") : ("tails")
+	if(Tab.call == Tab.flip){
+	  Tab.result = "win"
+	} else {
+	  Tab.result = "lose"
+	}
+	return Tab
+}
+
+app.get('/app/flips/call/heads', (req, res) => {
+	res.status(200).json(flipACoin("heads"))
+});
+
+app.get('/app/flips/call/tails', (req, res) => {
+	res.status(200).json(flipACoin("tails"))
+});
 
 // Default response for any other request
 app.use(function(req, res){
